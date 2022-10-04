@@ -1,9 +1,9 @@
 package main
 
 import (
-	"cmd/stdlib/bytesexample"
+	"cmd/stdlib/emexample"
 )
 
 func main() {
-	bytesexample.BytesFields()
+	emexample.EmbedFile()
 }
