@@ -1,9 +1,7 @@
 package main
 
-import (
-	"cmd/stdlib/emexample"
-)
+import usecases "cmd/usecasess"
 
 func main() {
-	emexample.EmbedFile()
+	usecases.EncodeDecEx()
 }
