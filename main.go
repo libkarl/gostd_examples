@@ -1,7 +1,12 @@
 package main
 
-import usecases "cmd/usecasess"
+import (
+	"cmd/stdlib/interfaceex"
+	
+)
 
 func main() {
-	usecases.EncodeDecEx()
+	
+	
+	interfaceex.ObjectTest1()
 }
