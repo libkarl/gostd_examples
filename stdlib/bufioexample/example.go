@@ -2,6 +2,7 @@ package bufioexample
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"os"
 	"strconv"
@@ -120,4 +121,49 @@ func AvailableBuffer() {
 		w.Write(b)
 	}
 	w.Flush()
+}
+
+// 1
+func BufferExample1() {
+	//Creating buffer variable to hold and manage the string data
+	var strBuffer bytes.Buffer
+	strBuffer.WriteString("Ranjan")
+	strBuffer.WriteString("Kumar")
+	fmt.Println("The string buffer output is",strBuffer.String())
+}
+
+func BufferExample2() {
+	//Creating buffer variable to hold and manage the string data
+	var strBuffer bytes.Buffer
+	len, _ := fmt.Fprintf(&strBuffer, "It is number: %d, This is a string: %v\n", 10, "Bridge")
+
+	fmt.Println("The length of given string is: ", len)
+	strBuffer.WriteString("[DONE]")
+	fmt.Println("The string buffer output is",strBuffer.String())
+}
+
+func BufferExample3() {
+	//Creating buffer variable to hold and manage the string data
+	var byteString bytes.Buffer
+	// bytes package má i svou vlastní metodu pro plnění bufferu
+	byteString.Write([]byte("Hello "))
+	fmt.Fprintf(&byteString, "Hello friends how are you")
+	// stejně tak má svou vlastní metodu pro zapisování s cílem
+	var buffer2 bytes.Buffer
+	byteString.WriteTo(&buffer2)
+	
+	// zapisuje do standard output
+	buffer2.WriteTo(os.Stdout)
+}
+
+func BufferExample4() {
+	//Creating buffer variable to hold and manage the string data
+	var strByyte bytes.Buffer
+	// zvětší kapacitu bufferu
+	strByyte.Grow(64)
+	// přeuloží bytes uložené v bufferu do nové proměnné
+	strByyte.Write([]byte("It is a 64 byte"))
+	strByytestrByyte := strByyte.Bytes()
+	fmt.Println(string(strByytestrByyte[:]))
+	fmt.Printf("%b", strByytestrByyte[:strByyte.Len()])
 }

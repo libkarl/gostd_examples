@@ -1,12 +1,12 @@
 package main
 
 import (
-	"cmd/stdlib/interfaceex"
+	"cmd/stdlib/bufioexample"
 	
 )
 
 func main() {
 	
 	
-	interfaceex.ObjectTest1()
+	bufioexample.BufferExample4()
 }
