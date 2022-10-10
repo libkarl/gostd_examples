@@ -23,6 +23,41 @@ func (o ObjT) CreateString() string {
 	return text
 }
 
+type SalaryCalculator interface {  
+	CalculateSalary() int
+    }
+    
+    type Permanent struct {  
+	empId    int
+	basicpay int
+	pf       int
+    }
+    
+    type Contract struct {  
+	empId    int
+	basicpay int
+    }
+
+    type Def struct {
+	empID int
+    }
+
+    // def method
+    func (d Def) CalculateSalary() int {
+	return d.empID
+    }
+    
+    //salary of permanent employee is the sum of basic pay and pf
+    func (p Permanent) CalculateSalary() int {  
+	return p.basicpay + p.pf
+    }
+    
+    //salary of contract employee is the basic pay alone
+    func (c Contract) CalculateSalary() int {  
+	return c.basicpay
+    }
+
+
 // advanced usecase 1
 func ObjectTest1 () {
 	pemp1 := Permanent{
@@ -99,38 +134,3 @@ func ObjectTest3(x ObjT) {
 	fmt.Println(x.GiveMeLenght())
 	fmt.Println(x.CreateString())
 }
-
-type SalaryCalculator interface {  
-	CalculateSalary() int
-    }
-    
-    type Permanent struct {  
-	empId    int
-	basicpay int
-	pf       int
-    }
-    
-    type Contract struct {  
-	empId    int
-	basicpay int
-    }
-
-    type Def struct {
-	empID int
-    }
-
-    // def method
-    func (d Def) CalculateSalary() int {
-	return d.empID
-    }
-    
-    //salary of permanent employee is the sum of basic pay and pf
-    func (p Permanent) CalculateSalary() int {  
-	return p.basicpay + p.pf
-    }
-    
-    //salary of contract employee is the basic pay alone
-    func (c Contract) CalculateSalary() int {  
-	return c.basicpay
-    }
-
