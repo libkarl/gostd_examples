@@ -1,12 +1,10 @@
 package main
 
 import (
-	"cmd/stdlib/bufioexample"
-	
+	"cmd/stdlib/regexpex"
 )
 
 func main() {
-	
-	
-	bufioexample.BufferExample4()
+	// vrací ze souboru jednotlivá slova
+	regexpex.CompileRegex()
 }

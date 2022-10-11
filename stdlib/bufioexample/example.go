@@ -129,7 +129,7 @@ func BufferExample1() {
 	var strBuffer bytes.Buffer
 	strBuffer.WriteString("Ranjan")
 	strBuffer.WriteString("Kumar")
-	fmt.Println("The string buffer output is",strBuffer.String())
+	fmt.Println("The string buffer output is", strBuffer.String())
 }
 
 func BufferExample2() {
@@ -139,7 +139,7 @@ func BufferExample2() {
 
 	fmt.Println("The length of given string is: ", len)
 	strBuffer.WriteString("[DONE]")
-	fmt.Println("The string buffer output is",strBuffer.String())
+	fmt.Println("The string buffer output is", strBuffer.String())
 }
 
 func BufferExample3() {
@@ -151,7 +151,7 @@ func BufferExample3() {
 	// stejně tak má svou vlastní metodu pro zapisování s cílem
 	var buffer2 bytes.Buffer
 	byteString.WriteTo(&buffer2)
-	
+
 	// zapisuje do standard output
 	buffer2.WriteTo(os.Stdout)
 }
@@ -159,11 +159,35 @@ func BufferExample3() {
 func BufferExample4() {
 	//Creating buffer variable to hold and manage the string data
 	var strByyte bytes.Buffer
-	// zvětší kapacitu bufferu
+	// předchystá kapacitu bufferu, aby nemuselo docházet k alokování paměti při zápisu
 	strByyte.Grow(64)
-	// přeuloží bytes uložené v bufferu do nové proměnné
+	// zapíše do bufferu data
 	strByyte.Write([]byte("It is a 64 byte"))
+	// přeuloží bytes uložené v bufferu do nové proměnné
 	strByytestrByyte := strByyte.Bytes()
 	fmt.Println(string(strByytestrByyte[:]))
 	fmt.Printf("%b", strByytestrByyte[:strByyte.Len()])
 }
+
+// buffion exampkle 5
+type Writer int
+
+func (*Writer) Write(p []byte) (n int, err error) {
+	fmt.Printf("%q\n", p)
+	return len(p), nil
+}
+func BufferExample5() {
+	//
+	s := strings.NewReader("onetwothreeegap")
+	// vrací pointer na nově alokovanou strukturu v paměti
+	w := new(Writer)
+	// jako argument dám metodu, která je v souladu  interfacem a stanovím velikost
+	bw := bufio.NewWriterSize(w, 3)
+	bw.ReadFrom(s)
+	err := bw.Flush()
+	if err != nil {
+		panic(err)
+	}
+}
+
+//
