@@ -3,6 +3,7 @@ package filework
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 )
@@ -91,4 +92,16 @@ func MoveFile() {
 	// Rename or move file from one location to another.
 	os.Rename(before, after)
 	fmt.Println("DONE")
+}
+
+func SeekerTest() {
+	file, _ := os.Open("/Users/karel/projects/gostd_examples/stdlib/filework/test.txt")
+	reader := io.Reader(file)
+	buffer, err := io.ReadAll(reader)
+	fmt.Printf("ReadAll buffer={%v}, err={%v}\n", string(buffer), err)
+	seeker := reader.(io.Seeker)
+	seeker.Seek(0, io.SeekStart)
+	buffer, err = io.ReadAll(reader)
+	fmt.Printf("ReadAll buffer={%v}, err={%v}\n", string(buffer), err)
+	file.Close()
 }

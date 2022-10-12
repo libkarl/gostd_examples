@@ -1,10 +1,10 @@
 package main
 
 import (
-	"cmd/stdlib/regexpex"
+	"cmd/stdlib/filework"
 )
 
 func main() {
 	// vrací ze souboru jednotlivá slova
-	regexpex.CompileRegex()
+	filework.SeekerTest()
 }
