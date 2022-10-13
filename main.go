@@ -1,10 +1,10 @@
 package main
 
 import (
-	"cmd/stdlib/filework"
+	"cmd/stdlib/pictures"
 )
 
 func main() {
 	// vrací ze souboru jednotlivá slova
-	filework.SeekerTest()
+	pictures.PictureExampleTerminalPrint()
 }
